@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.type.TypeReference;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -37,21 +38,31 @@ public class ConsultSneakerRestController {
 
         List<SneakerAiDto> sneakers = productService.getSneakers();
 
-        String prompt = promptBuilder.buildPrompt(request.getNeed(), sneakers);
+        String prompt = promptBuilder.buildPrompt(
+                request.getNeed(),
+                sneakers
+        );
 
-        String aiResult = geminiService.callGemini(prompt);
+        String aiResult = geminiService.callAI(prompt);
 
-        List<SneakerConsultResponse> result;
         try {
-            result = objectMapper.readValue(
-                    aiResult,
-                    new TypeReference<List<SneakerConsultResponse>>() {
-                    }
-            );
+            List<SneakerConsultResponse> result =
+                    objectMapper.readValue(
+                            aiResult,
+                            new TypeReference<List<SneakerConsultResponse>>() {}
+                    );
+
+            return new ResponseObject(result);
+
         } catch (Exception e) {
-            return new ResponseObject(null);
+            e.printStackTrace();
+            System.out.println("AI RAW RESULT:");
+            System.out.println(aiResult);
+
+            return new ResponseObject(Collections.emptyList());
         }
-        return new ResponseObject(result);
     }
+
+
 
 }
