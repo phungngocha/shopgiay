@@ -18,12 +18,24 @@ export default function SneakerAiChat() {
 
     try {
       const res = await SneakerAiClientApi.consultSneaker(need);
-      const products = res.data.data || [];
 
-      setMessages((prev) => [
-        ...prev,
-        { from: "ai", products },
-      ]);
+      const data = res?.data?.data;
+
+      // ✅ Nếu BE trả LIST sneaker
+      if (Array.isArray(data) && data.length > 0) {
+        setMessages((prev) => [...prev, { from: "ai", products: data }]);
+      }
+      // ✅ Nếu BE trả TEXT (OpenAI fallback)
+      else if (typeof data === "string") {
+        setMessages((prev) => [...prev, { from: "ai", text: data }]);
+      }
+      // ✅ Không có gì trả về
+      else {
+        setMessages((prev) => [
+          ...prev,
+          { from: "ai", text: "🤖 Mình chưa tìm được sản phẩm phù hợp." },
+        ]);
+      }
     } catch (e) {
       setMessages((prev) => [
         ...prev,
@@ -41,27 +53,27 @@ export default function SneakerAiChat() {
       <div className="ai-chat-body">
         {messages.map((m, i) =>
           m.from === "user" ? (
-            <div key={i} className="msg user">{m.text}</div>
+            <div key={i} className="msg user">
+              {m.text}
+            </div>
           ) : (
             <div key={i} className="msg ai">
-              {m.products ? (
-                m.products.map((p, idx) => (
-                  <div key={idx} className="product-card">
-                    <b>{p.productName}</b>
-                    <div>💰 {p.price?.toLocaleString()} đ</div>
-                    <small>{p.reason}</small>
-                    <button
-                      onClick={() =>
-                        navigate(`/product-detail/${p.productId}`)
-                      }
-                    >
-                      Xem chi tiết
-                    </button>
-                  </div>
-                ))
-              ) : (
-                m.text
-              )}
+              {m.products
+                ? m.products.map((p, idx) => (
+                    <div key={idx} className="product-card">
+                      <b>{p.productName}</b>
+                      <div>💰 {p.price?.toLocaleString()} đ</div>
+                      <small>{p.reason}</small>
+                      <button
+                        onClick={() =>
+                          navigate(`/detail-product/${p.productId}`)
+                        }
+                      >
+                        Xem chi tiết
+                      </button>
+                    </div>
+                  ))
+                : m.text}
             </div>
           )
         )}
