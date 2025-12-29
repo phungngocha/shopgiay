@@ -135,4 +135,24 @@ public interface ProductRepository extends JpaRepository<Product, String> {
             """, nativeQuery = true)
     List<ProductDetailReponse> getAllProduct(@Param("req") FindProductDetailRequest req);
 
+
+    @Query(value = """
+                SELECT
+                  p.id AS productId,
+                  p.name AS productName,
+                  pd.price AS price,
+                  pd.gender AS gender,
+                  pd.description AS description,
+                  pd.id_brand AS brand,
+                  pd.id_category AS category,
+                  pd.id_material AS material,
+                  pd.id_sole AS sole
+                FROM product p
+                JOIN product_detail pd ON p.id = pd.id_product
+                WHERE p.status = 'DANG_SU_DUNG'
+                AND pd.status = 'DANG_SU_DUNG'
+                AND pd.quantity > 0
+                LIMIT 20
+            """, nativeQuery = true)
+    List<Object[]> findSneakersForAi();
 }

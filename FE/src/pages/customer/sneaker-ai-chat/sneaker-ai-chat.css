@@ -1,0 +1,62 @@
+.ai-chat {
+  width: 360px;
+  height: 520px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.ai-chat-header {
+  background: #111;
+  color: #fff;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.ai-chat-body {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background: #f6f6f6;
+}
+
+.msg {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  max-width: 80%;
+}
+
+.msg.user {
+  background: #111;
+  color: #fff;
+  margin-left: auto;
+}
+
+.msg.ai {
+  background: #fff;
+  border: 1px solid #ddd;
+}
+
+.ai-chat-input {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.ai-chat-input input {
+  flex: 1;
+  padding: 6px;
+}
+
+.product-card {
+  border-bottom: 1px solid #eee;
+  padding: 6px 0;
+}
+
+.product-card button {
+  margin-top: 5px;
+  font-size: 12px;
+}

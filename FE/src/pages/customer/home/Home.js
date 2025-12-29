@@ -12,7 +12,7 @@ import "./style-home.css";
 
 import { CategoryClientApi } from "./../../../api/customer/category/categoryClient.api";
 import { ProductDetailClientApi } from "./../../../api/customer/productdetail/productDetailClient.api";
-
+import SneakerAiChat from "../sneaker-ai-chat/SneakerAiChat";
 import CardItem from "../component/Card";
 
 function Home() {
@@ -229,6 +229,11 @@ function Home() {
             </Link>
           </Col>
         </Row>
+      </div>
+
+      <div class="title-product-category">
+        <h3 class="">Tao là chat AI</h3>
+        <SneakerAiChat />
       </div>
 
       <div className="search-category">

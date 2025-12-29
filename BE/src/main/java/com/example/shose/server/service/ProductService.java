@@ -1,5 +1,6 @@
 package com.example.shose.server.service;
 
+import com.example.shose.server.dto.SneakerAiDto;
 import com.example.shose.server.dto.request.product.CreateProductRequest;
 import com.example.shose.server.dto.request.product.FindProductRequest;
 import com.example.shose.server.dto.request.product.FindProductUseRequest;
@@ -34,4 +35,6 @@ public interface ProductService {
     List<ProductUseRespone> getProductUse(FindProductUseRequest request);
 
     List<ProductDetailReponse> getAllProduct(FindProductDetailRequest req);
+
+    List<SneakerAiDto> getSneakers();
 }

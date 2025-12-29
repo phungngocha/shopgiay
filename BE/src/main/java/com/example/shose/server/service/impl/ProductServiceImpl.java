@@ -1,5 +1,6 @@
 package com.example.shose.server.service.impl;
 
+import com.example.shose.server.dto.SneakerAiDto;
 import com.example.shose.server.dto.request.product.CreateProductRequest;
 import com.example.shose.server.dto.request.product.FindProductRequest;
 import com.example.shose.server.dto.request.product.FindProductUseRequest;
@@ -20,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -102,4 +104,24 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductDetailReponse> getAllProduct(FindProductDetailRequest req) {
         return productRepository.getAllProduct(req);
     }
+
+    @Override
+    public List<SneakerAiDto> getSneakers() {
+        List<Object[]> rows = productRepository.findSneakersForAi();
+
+        return rows.stream().map(r -> {
+            SneakerAiDto dto = new SneakerAiDto();
+            dto.setProductId((String) r[0]);
+            dto.setProductName((String) r[1]);
+            dto.setPrice((BigDecimal) r[2]);
+            dto.setGender(String.valueOf(r[3]));
+            dto.setDescription((String) r[4]);
+            dto.setBrand((String) r[5]);
+            dto.setCategory((String) r[6]);
+            dto.setMaterial((String) r[7]);
+            dto.setSole((String) r[8]);
+            return dto;
+        }).toList();
+    }
+
 }
