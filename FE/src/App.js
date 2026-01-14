@@ -71,7 +71,7 @@ import Notification from "./pages/customer/account/notification/Notification";
 import RepoVoucher from "./pages/customer/account/voucher/Voucher";
 import Policy from "./pages/customer/policy/Policy";
 import SignUp from "./pages/customer/signup/SignUp";
-
+import SearchResult from "./pages/customer/search/SearchResult";
 import GiveBackManagement from "./pages/employee/give-back-management/GiveBackManagement";
 import NotFound from "./pages/404";
 import NotAuthorized from "./pages/403";
@@ -505,6 +505,19 @@ function App() {
               </AuthGuard>
             }
           />
+            <Route
+  path="/search"
+  element={
+    <GuestGuard>
+      <CartProvider>
+        <DashBoardCustomer>
+          <SearchResult />
+        </DashBoardCustomer>
+      </CartProvider>
+    </GuestGuard>
+  }
+/>
+
           <Route
             path="/sale-counter"
             element={

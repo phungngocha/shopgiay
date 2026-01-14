@@ -5,7 +5,6 @@ import List from "./pages/admin/list/List";
 import Single from "./pages/admin/detailUser/Single";
 import Properties from "./pages/admin/properties/Properties";
 import CreateProduct from "./pages/admin/product/CreateProduct";
-
 const publicRouters = [
     {path: '/', element: Home},
     {path: '/login', element: Login},

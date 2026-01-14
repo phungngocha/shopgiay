@@ -3,6 +3,7 @@ import React from "react";
 import "./Style-products.css";
 import { useState } from "react";
 import { useEffect } from "react";
+import SneakerAiChat from "../sneaker-ai-chat/SneakerAiChat";
 import CardItem from "./../component/Card";
 import { ProductDetailClientApi } from "../../../api/customer/productdetail/productDetailClient.api";
 import { BrandApi } from "../../../api/employee/brand/Brand.api";
@@ -18,12 +19,12 @@ const categoryGender = [
     value: "",
   },
   {
-    name: "NAM",
-    value: "NAM",
-  },
-  {
     name: "NỮ",
     value: "NU",
+  },
+  {
+    name: "NAM",
+    value: "NAM",
   },
 ];
 
@@ -459,13 +460,17 @@ function Products() {
                        onChange={handlePageChange}
                    />
                  </div>
+                 
                </>
             )}
-
+<SneakerAiChat />
           </div>
         </Col>
+        
       </Row>
+      
     </React.Fragment>
+    
   );
 }
 export default Products;

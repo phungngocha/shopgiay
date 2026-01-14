@@ -1,32 +1,49 @@
+/* Wrapper nổi */
+.ai-chat-wrapper {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+/* Box chính */
 .ai-chat {
   width: 360px;
   height: 520px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
   background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.ai-chat-header {
+  background: linear-gradient(135deg, #111, #333);
+  color: #fff;
+  padding: 12px;
+  font-weight: bold;
   display: flex;
   flex-direction: column;
 }
 
-.ai-chat-header {
-  background: #111;
-  color: #fff;
-  padding: 10px;
-  font-weight: bold;
-}
-
+/* Body */
 .ai-chat-body {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
+  background: #f5f5f5;
   overflow-y: auto;
-  background: #f6f6f6;
 }
 
+/* Message */
 .msg {
+  padding: 8px 12px;
+  border-radius: 14px;
   margin-bottom: 10px;
-  padding: 8px 10px;
-  border-radius: 8px;
-  max-width: 80%;
+  max-width: 75%;
+  font-size: 14px;
 }
 
 .msg.user {
@@ -40,6 +57,12 @@
   border: 1px solid #ddd;
 }
 
+.msg.typing {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* Input */
 .ai-chat-input {
   display: flex;
   padding: 10px;
@@ -48,15 +71,83 @@
 
 .ai-chat-input input {
   flex: 1;
-  padding: 6px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
+.ai-chat-input button {
+  margin-left: 8px;
+  background: #111;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Product card */
 .product-card {
   border-bottom: 1px solid #eee;
-  padding: 6px 0;
+  padding: 8px 0;
+}
+
+.product-name {
+  font-weight: bold;
+}
+
+.product-price {
+  color: #d0021b;
+  margin: 4px 0;
+}
+
+.product-reason {
+  font-size: 12px;
+  color: #555;
 }
 
 .product-card button {
-  margin-top: 5px;
+  margin-top: 6px;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
   font-size: 12px;
+  cursor: pointer;
+}
+/* Nút AI tròn */
+.ai-chat-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  background: #111;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.ai-chat-button:hover {
+  transform: scale(1.1);
+}
+
+/* Nút đóng */
+.close-btn {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Header chỉnh lại */
+.ai-chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
