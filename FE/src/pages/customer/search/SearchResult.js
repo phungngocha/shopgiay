@@ -1,32 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, Link } from "react-router-dom";
-import { Row, Col } from "antd";
-import { ProducDetailtApi } from "../../../api/employee/product-detail/productDetail.api";
+import { useLocation } from "react-router-dom";
+import { Pagination } from "antd";
 import "./style-search-result.css";
-
+import { ProductDetailClientApi } from "../../../api/customer/productdetail/productDetailClient.api";
+import banner from "../../../assets/images/banner-2.png";
+import CardItem from "../component/Card";
 function SearchResult() {
   const location = useLocation();
   const [products, setProducts] = useState([]);
+  const [totalPagesProduct, setTotalPagesProduct] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const searchValues = location.state?.searchValues;
+  const [formSearch, setFormSearch] = useState({
+    page: currentPage,
+    size: 15,
+    gender: "",
+  });
+  useEffect(() => {
+    if (!location.state) return;
 
-useEffect(() => {
-  if (!location.state) return;
+    // const { products, searchValues } = location.state;
 
-  const { products, searchValues } = location.state;
-
-  if (products?.length) {
-    setProducts(products);
-  } else if (searchValues) {
-    ProducDetailtApi.fetchAll(searchValues)
-      .then((res) => setProducts(res.data.data || []))
-      .catch((err) => {
-        console.error("Lỗi API search:", err);
-        setProducts([]);
-      });
-  } else {
-    setProducts([]);
-  }
-}, [location.state]);
+    if (products?.length) {
+      setProducts(products);
+    } else if (searchValues) {
+      ProductDetailClientApi.getByName(searchValues)
+        .then((res) => {
+          setProducts(res.data.data.data || []);
+          console.log(res.data.data);
+          
+          setTotalPagesProduct(res.data.data.totalPages);
+        })
+        .catch((err) => {
+          console.error("Lỗi API search:", err);
+          setProducts([]);
+        });
+    } else {
+      setProducts([]);
+    }
+  }, [searchValues]);
 
 
 
@@ -39,68 +51,53 @@ useEffect(() => {
     );
   };
 
+  useEffect(() => {
+    if (totalPagesProduct === 1) {
+      changeFormSearch("page", 0);
+      setCurrentPage(0);
+    }
+  }, [totalPagesProduct]);
+
+  const changeFormSearch = (name, value) => {
+    setFormSearch((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page - 1);
+    changeFormSearch("page", page - 1);
+  };
+
   return (
     <div className="search-result-page">
-      <h2>Kết quả tìm kiếm</h2>
-
-      <Row gutter={[24, 32]}>
-        {products.length > 0 ? (
-          products.map((item) => (
-            <Col
-              xl={6}
-              lg={8}
-              md={12}
-              sm={12}
-              xs={24}
-              key={item.idProductDetail}
-            >
-              <Link
-                to={`/detail-product/${item.idProductDetail}`}
-                className="search-product-card"
-              >
-                <div className="search-product-image">
-                  <img
-                    src={
-                      item.image
-                        ? item.image.split(",")[0]
-                        : "/no-image.png"
-                    }
-                    alt={item.nameProduct}
-                  />
-                </div>
-
-                <div className="search-product-info">
-                  <div className="search-product-name">
-                    {item.nameProduct}
-                  </div>
-
-                  <div className="search-product-price">
-                    {item.valuePromotion ? (
-                      <>
-                        <span className="price-sale">
-                          {formatMoney(
-                            item.price -
-                              item.price * (item.valuePromotion / 100)
-                          )}
-                        </span>
-                        <del className="price-origin">
-                          {formatMoney(item.price)}
-                        </del>
-                      </>
-                    ) : (
-                      <span className="price-sale">
-                        {formatMoney(item.price)}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </Link>
-            </Col>
-          ))
+      <div className="box-products">
+        <img className="title-of-products" src={banner} alt="..." />
+        {products.length === 0 ? (
+          <div style={{ textAlign: "center", color: "#ff4400", fontSize: 30 }}>
+            Không có sản phẩm nào!
+          </div>
         ) : (
-          <p className="empty-search">Không tìm thấy sản phẩm phù hợp</p>
+          <>
+            <div className="list-product">
+              {products.map((item, index) => (
+                <CardItem item={item} index={index} />
+              ))}
+            </div>
+
+            <div className="box-pagination-products">
+              <Pagination
+                defaultCurrent={1}
+                current={currentPage + 1}
+                total={totalPagesProduct * 10}
+                onChange={handlePageChange}
+              />
+            </div>
+
+          </>
         )}
-      </Row>
+      </div>
     </div>
   );
 }

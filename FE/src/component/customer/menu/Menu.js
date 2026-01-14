@@ -84,25 +84,11 @@ function HeaderMenu() {
 
   const handleSubmitSearch = (event) => {
   event.preventDefault();
-
-  ProducDetailtApi.fetchAll(selectedValues)
-    .then((res) => {
-      const products = res.data.data;
-
-      // Đóng modal search
-      setModal(false);
-
-      // Chuyển sang trang search-result và truyền dữ liệu
       navigate("/search", {
         state: {
-          products: products,
           searchValues: selectedValues,
         },
       });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 };
 
 

@@ -68,7 +68,6 @@ function DetailProduct() {
   }, []);
   useEffect(() => {
     setImage(detailProduct.image.split(",")[0]);
-    console.log(detailProduct);
     const newCartItem = {
       idProductDetail: detailProduct.idProductDetail,
       image: detailProduct.image,
@@ -80,18 +79,13 @@ function DetailProduct() {
       createdDate: detailProduct.createdDate,
       valuePromotion: detailProduct.valuePromotion,
     };
-    console.log(newCartItem);
     setProductSaw((prev) => {
-      console.log(newCartItem.idProductDetail);
-      console.log(prev);
       const exists = prev.find(
         (item) => item.idProductDetail === newCartItem.idProductDetail
       );
       if (!exists) {
-        console.log("mới");
         return [...prev, newCartItem];
       } else {
-        console.log("trùng");
         return prev.map((item) =>
           item.idProductDetail === newCartItem.idProductDetail
             ? { ...item, quantity: item.quantity + newCartItem.quantity }
@@ -99,14 +93,12 @@ function DetailProduct() {
         );
       }
     });
-    console.log(detailProduct);
   }, [detailProduct]);
 
   const getDetailProduct = (idProductDetail) => {
     setItemSize(idProductDetail);
     ProductDetailClientApi.getDetailProductOfClient(idProductDetail).then(
       (res) => {
-        console.log(res.data.data);
         setDetailProduct(res.data.data);
         const nameSizeArray = res.data.data.listSize.split(",");
         const sizeList = [];
@@ -137,7 +129,6 @@ function DetailProduct() {
 
   const handleAddCartLocal = (newCartItem) => {
     setCartLocal((prev) => {
-      console.log(cartLocal);
       const exists = prev.find(
         (item) => item.idProductDetail === newCartItem.idProductDetail
       );

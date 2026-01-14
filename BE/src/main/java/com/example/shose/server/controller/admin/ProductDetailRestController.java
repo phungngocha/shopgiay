@@ -29,9 +29,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-/**
- * @author Nguyễn Vinh
- */
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/admin/product-detail")

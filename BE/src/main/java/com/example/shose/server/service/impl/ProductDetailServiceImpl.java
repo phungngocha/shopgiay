@@ -2,6 +2,7 @@ package com.example.shose.server.service.impl;
 
 import com.example.shose.server.dto.ProductDetailDTO;
 import com.example.shose.server.dto.request.image.ImageColorFilerequestDTO;
+import com.example.shose.server.dto.request.product.FindProductRequest;
 import com.example.shose.server.dto.request.productdetail.CreateProductDetailRequest;
 import com.example.shose.server.dto.request.productdetail.FindProductDetailByCategorysConvertRequest;
 import com.example.shose.server.dto.request.productdetail.FindProductDetailByCategorysRequest;
@@ -68,9 +69,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-/**
- * @author Nguyễn Vinh
- */
 @Service
 @Validated
 @Slf4j
@@ -378,6 +376,12 @@ public class ProductDetailServiceImpl implements ProductDetailService {
                 .build();
         System.out.println(detail);
         return productDetailRepository.getProductDetailByCategorys(pageable,detail,request);
+    }
+
+    @Override
+    public Page<GetProductDetail> getProductDetailByName(FindProductRequest request, Pageable pageRequest) {
+        Pageable pageable = PageRequest.of(pageRequest.getPageNumber(), pageRequest.getPageSize());
+        return productDetailRepository.searchProduct(pageable,request);
     }
 
     public ProductDetailReponse checkQuantityAndPriceByProducDetailByAll(CreateProductDetailRequest request) {

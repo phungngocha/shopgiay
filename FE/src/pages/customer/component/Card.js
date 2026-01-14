@@ -45,8 +45,8 @@ function CardItem({ item, index }) {
       dayjs.unix(item.createdDate / 1000).format("DD-MM-YYYY"),
       now.format("DD-MM-YYYY")
     );
-    if(idAccountLocal !== null){
-      CartClientApi.listCart(idAccountLocal).then((res)=>{
+    if (idAccountLocal !== null) {
+      CartClientApi.listCart(idAccountLocal).then((res) => {
         setCartAccount(res.data.data)
       })
     }
@@ -59,7 +59,7 @@ function CardItem({ item, index }) {
         (item) => item.idProductDetail === newCartItem.idProductDetail
       );
       console.log(exists);
-      if (exists=== undefined) {
+      if (exists === undefined) {
         console.log(exists);
         return [...prev, newCartItem];
       } else {
@@ -107,10 +107,9 @@ function CardItem({ item, index }) {
           });
         } else {
           toast.warning(
-            detailProduct.quantity - detailProductCart.quantity > 0 ? 
-            (`Bạn chỉ được thêm tối đa ${
-              detailProduct.quantity - detailProductCart.quantity
-            } sản phẩm`) :("Số lượng của sản phẩm trong giỏ đã đầy")
+            detailProduct.quantity - detailProductCart.quantity > 0 ?
+              (`Bạn chỉ được thêm tối đa ${detailProduct.quantity - detailProductCart.quantity
+                } sản phẩm`) : ("Số lượng của sản phẩm trong giỏ đã đầy")
           );
         }
       } else {
@@ -143,10 +142,9 @@ function CardItem({ item, index }) {
           });
         } else {
           toast.warning(
-            detailProduct.quantity - detailProductCart.quantity > 0 ? 
-            (`Bạn chỉ được thêm tối đa ${
-              detailProduct.quantity - detailProductCart.quantity
-            } sản phẩm`) :("Số lượng của sản phẩm trong giỏ đã đầy")
+            detailProduct.quantity - detailProductCart.quantity > 0 ?
+              (`Bạn chỉ được thêm tối đa ${detailProduct.quantity - detailProductCart.quantity
+                } sản phẩm`) : ("Số lượng của sản phẩm trong giỏ đã đầy")
           );
         }
       } else {
@@ -263,19 +261,22 @@ function CardItem({ item, index }) {
               </div>
             </div>
             <div>
-              <p className="name-product">
-                {item.nameProduct} - [{item.nameSize}]
-              </p>
+              {item.nameProduct && (
+                <p className="name-product">
+                  {item.nameProduct} - [{item.nameSize}]
+                </p>
+              )}
+
             </div>
             <div className="list-color-detail-card">
-                  <div
-                    className="color-product"
-                    key={index}
-                    style={{
-                      backgroundColor: item.codeColor,
-                    }}
-                  ></div>
-                </div>
+              <div
+                className="color-product"
+                key={index}
+                style={{
+                  backgroundColor: item.codeColor,
+                }}
+              ></div>
+            </div>
             <p className="price-product">
               {item.valuePromotion !== null ? (
                 <>
@@ -343,8 +344,8 @@ function CardItem({ item, index }) {
                       {" "}
                       {formatMoney(
                         detailProduct.price -
-                          detailProduct.price *
-                            (detailProduct.valuePromotion / 100)
+                        detailProduct.price *
+                        (detailProduct.valuePromotion / 100)
                       )}
                     </span>
                     <del

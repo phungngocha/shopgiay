@@ -1,5 +1,6 @@
 package com.example.shose.server.repository;
 
+import com.example.shose.server.dto.request.product.FindProductRequest;
 import com.example.shose.server.dto.request.productdetail.FindProductDetailByCategorysConvertRequest;
 import com.example.shose.server.dto.request.productdetail.FindProductDetailByCategorysRequest;
 import com.example.shose.server.dto.request.productdetail.CreateProductDetailRequest;
@@ -24,9 +25,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author Nguyễn Vinh
- */
 @Repository
 public interface ProductDetailRepository extends JpaRepository<ProductDetail, String> {
 
@@ -455,6 +453,24 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, St
     Page<GetProductDetail> getProductDetailByCategorys(Pageable pageable,
                                                        @Param("req") FindProductDetailByCategorysConvertRequest req,
                                                        @Param("res") FindProductDetailByCategorysRequest res);
+
+    @Query(value = """
+    SELECT
+        p.id AS idProduct,
+        p.code AS codeProduct,
+        p.name AS nameProduct,
+        b.name AS brandName
+    FROM product p
+    LEFT JOIN brand b ON p.id_brand = b.id
+    WHERE
+        (:#{#req.keyword} IS NULL OR :#{#req.keyword} = '')
+        OR p.code LIKE CONCAT('%', :#{#req.keyword}, '%')
+        OR p.name LIKE CONCAT('%', :#{#req.keyword}, '%')
+""", nativeQuery = true)
+    Page<SearchProductBasic> searchBasicProduct(
+            Pageable pageable,
+            @Param("req") FindProductRequest req
+    );
 
     @Query(value = """
                 SELECT

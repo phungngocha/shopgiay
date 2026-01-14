@@ -2,6 +2,7 @@ package com.example.shose.server.service;
 
 import com.example.shose.server.dto.ProductDetailDTO;
 import com.example.shose.server.dto.request.image.ImageColorFilerequestDTO;
+import com.example.shose.server.dto.request.product.FindProductRequest;
 import com.example.shose.server.dto.request.productdetail.CreateProductDetailRequest;
 import com.example.shose.server.dto.request.productdetail.FindProductDetailByCategorysRequest;
 import com.example.shose.server.dto.request.productdetail.FindProductDetailRequest;
@@ -26,9 +27,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-/**
- * @author Nguyễn Vinh
- */
 public interface ProductDetailService {
 
     List<ProductDetailReponse> getAll(FindProductDetailRequest findProductDetailRequest);
@@ -62,6 +60,9 @@ public interface ProductDetailService {
     List<ListSizeOfItemCart> listSizeByProductAndColor(String idProduct, String codeColor);
 
     Page<GetProductDetail> getProductDetailByCategorys(FindProductDetailByCategorysRequest request,Pageable pageable);
+
+    Page<GetProductDetail> getProductDetailByName(FindProductRequest request, Pageable pageable);
+
     ProductDetailReponse checkQuantityAndPriceByProducDetailByAll(CreateProductDetailRequest request);
 
     ProductDetailGiveBack getQuantityProductDetailGiveBack(String idProductDetail);

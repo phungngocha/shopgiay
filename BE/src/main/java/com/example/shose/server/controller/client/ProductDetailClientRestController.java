@@ -1,5 +1,6 @@
 package com.example.shose.server.controller.client;
 
+import com.example.shose.server.dto.request.product.FindProductRequest;
 import com.example.shose.server.dto.request.productdetail.FindProductDetailByCategorysRequest;
 import com.example.shose.server.infrastructure.common.PageableObject;
 import com.example.shose.server.infrastructure.common.PageableRequest;
@@ -15,9 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/*
- *  @author diemdz
- */
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/client/product-detail")
@@ -58,6 +56,11 @@ public class ProductDetailClientRestController {
     @GetMapping("/list")
     public ResponseObject getProductDetailByCategorys(FindProductDetailByCategorysRequest request,Pageable pageable) {
         return new ResponseObject(productDetailService.getProductDetailByCategorys(request,pageable));
+    }
+
+    @GetMapping("/search")
+    public ResponseObject getProductDetailByName(FindProductRequest request, Pageable pageable) {
+        return new ResponseObject(productDetailService.getProductDetailByName(request,pageable));
     }
 
 }

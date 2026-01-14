@@ -45,4 +45,12 @@ export class ProductDetailClientApi {
       params: data,
     });
   };
+
+  static getByName = (data) => {
+    return requestCustomer({
+      method: "GET",
+      url: `/client/product-detail/search`,
+      params: data,
+    });
+  };
 }
