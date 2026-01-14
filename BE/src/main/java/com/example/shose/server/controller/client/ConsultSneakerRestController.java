@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("/client/ai")
+    @RequestMapping("/client/ai")
 public class ConsultSneakerRestController {
     @Autowired
     private ProductService productService;

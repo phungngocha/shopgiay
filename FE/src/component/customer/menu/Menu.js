@@ -3,6 +3,7 @@ import "./style-menu.css";
 import { useCart } from "./../../../pages/customer/cart/CartContext";
 import logo from "./../../../assets/images/logo_client.png";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Select, Input, Button, Menu, Badge } from "antd";
 import {
   SearchOutlined,
@@ -10,6 +11,7 @@ import {
   ShoppingCartOutlined,
   MenuFoldOutlined,
 } from "@ant-design/icons";
+import { ProducDetailtApi } from "../../../api/employee/product-detail/productDetail.api";
 
 const { Option } = Select;
 function HeaderMenu() {
@@ -18,7 +20,14 @@ function HeaderMenu() {
   const [activeField, setActiveField] = useState("");
   const idAccount = sessionStorage.getItem("idAccount");
   const { totalQuantity } = useCart();
-
+  const navigate = useNavigate();
+  const [listProduct, setListProduct] = useState([]);
+  const [selectedValues, setSelectedValues] = useState({
+    keyword: "",
+    status: "",
+    minQuantity: 0,
+    maxQuantity: 500000,
+  });
   const fields = [
     {
       className: "title-menu",
@@ -71,6 +80,42 @@ function HeaderMenu() {
 
   const offSearch = () => {
     setModal(false);
+  };
+
+  const handleSubmitSearch = (event) => {
+  event.preventDefault();
+
+  ProducDetailtApi.fetchAll(selectedValues)
+    .then((res) => {
+      const products = res.data.data;
+
+      // Đóng modal search
+      setModal(false);
+
+      // Chuyển sang trang search-result và truyền dữ liệu
+      navigate("/search", {
+        state: {
+          products: products,
+          searchValues: selectedValues,
+        },
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
+  const handleInputChangeSearch = (name, value) => {
+    setSelectedValues((prevSearchCategory) => ({
+      ...prevSearchCategory,
+      [name]: value,
+    }));
+  };
+
+  const handleKeywordChange = (event) => {
+    const { value } = event.target;
+    handleInputChangeSearch("keyword", value);
   };
 
   return (
@@ -159,13 +204,9 @@ function HeaderMenu() {
 
         {/* content */}
         <div>
-          <Input className="input-search-products" placeholder="Sản phẩm..." />
-
-          <Select className=" custom-select" style={{ width: "100%" }}>
-            <Option>aa</Option>
-          </Select>
-
-          <Button className=" button-search">Tìm kiếm</Button>
+          <Input className="input-search-products" placeholder="Sản phẩm..." value={selectedValues.keyword}
+            onChange={handleKeywordChange} />
+          <Button className=" button-search" onClick={handleSubmitSearch}>Tìm kiếm</Button>
         </div>
       </div>
     </div>

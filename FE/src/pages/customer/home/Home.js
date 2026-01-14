@@ -231,10 +231,10 @@ function Home() {
         </Row>
       </div>
 
-      <div class="title-product-category">
+      {/* <div class="title-product-category">
         <h3 class="">Tao là chat AI</h3>
         <SneakerAiChat />
-      </div>
+      </div> */}
 
       <div className="search-category">
         <div className="title-product-category">
@@ -318,9 +318,13 @@ function Home() {
             onChange={handlePageChange}
           />
         </Row>
+        
       </div>
+      <SneakerAiChat />
     </div>
+    
   );
 }
+
 
 export default Home;

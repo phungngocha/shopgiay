@@ -21,6 +21,7 @@ import { ProductDetailClientApi } from "./../../../api/customer/productdetail/pr
 import { VoucherClientApi } from "./../../../api/customer/voucher/voucherClient.api";
 import "./style-cart.css";
 import {parseInt} from "lodash";
+import SneakerAiChat from "../sneaker-ai-chat/SneakerAiChat";
 
 function Cart() {
   const nav = useNavigate();
@@ -1048,6 +1049,7 @@ function Cart() {
           </div>
         </div>
       </Modal>
+       <SneakerAiChat />
     </div>
   );
 }
