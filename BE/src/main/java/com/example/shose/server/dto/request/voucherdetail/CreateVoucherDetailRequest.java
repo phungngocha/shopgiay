@@ -3,9 +3,6 @@ package com.example.shose.server.dto.request.voucherdetail;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author thangdt
- */
 
 @Getter
 @Setter

@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-/**
- * @author thangdt
- */
+
 @Getter
 @Setter
 public class ChangAllStatusBillByIdsRequest {

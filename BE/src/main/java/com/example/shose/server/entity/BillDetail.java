@@ -17,9 +17,7 @@ import lombok.ToString;
 
 import java.math.BigDecimal;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Entity
 @Getter
 @Setter

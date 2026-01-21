@@ -7,9 +7,7 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
- *  @author diemdz
- */
+
 @Getter
 @Setter
 public class UpdatePromotionRequest extends BasePromotionRequest {

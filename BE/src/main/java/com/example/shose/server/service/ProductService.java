@@ -15,9 +15,6 @@ import jakarta.validation.Valid;
 
 import java.util.List;
 
-/**
- * @author Nguyễn Vinh
- */
 public interface ProductService {
 
     List<ProductResponse> findAll(final FindProductRequest req);

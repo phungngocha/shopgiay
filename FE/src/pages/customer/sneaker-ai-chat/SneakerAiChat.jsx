@@ -59,7 +59,7 @@ export default function SneakerAiChat() {
     {open && (
     <div className="ai-chat">
       <div className="ai-chat-header">
-        <span>👟 Sneaker AI</span>
+        <span>AI tư vấn</span>
           <CloseOutlined
             className="close-btn"
             onClick={() => setOpen(false)}

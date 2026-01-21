@@ -1,7 +1,4 @@
 package com.example.shose.server.dto.request.bill.billcustomer;
-/*
- *  @author diemdz
- */
 
 import com.example.shose.server.dto.response.payment.PayMentVnpayResponse;
 import lombok.Getter;

@@ -5,9 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author Phuong Oanh
- */
+
 @Getter
 @Setter
 public abstract class BaseCustomerRequest {

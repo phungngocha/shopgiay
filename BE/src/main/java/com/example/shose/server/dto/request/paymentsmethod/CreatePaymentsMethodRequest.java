@@ -7,9 +7,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
-/**
- * @author thangdt
- */
+
 @Getter
 @Setter
 public class CreatePaymentsMethodRequest {

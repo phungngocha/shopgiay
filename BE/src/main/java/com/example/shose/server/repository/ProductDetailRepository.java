@@ -7,6 +7,7 @@ import com.example.shose.server.dto.request.productdetail.CreateProductDetailReq
 import com.example.shose.server.dto.request.productdetail.FindProductDetailRequest;
 import com.example.shose.server.dto.response.ProductDetailDTOResponse;
 import com.example.shose.server.dto.response.ProductDetailReponse;
+import com.example.shose.server.dto.response.SearchProductBasic;
 import com.example.shose.server.dto.response.cart.ListSizeOfItemCart;
 import com.example.shose.server.dto.response.productdetail.GetDetailProductOfClient;
 import com.example.shose.server.dto.response.productdetail.GetProductDetail;
@@ -88,7 +89,7 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, St
     List<ProductDetailReponse> getAll(@Param("req") FindProductDetailRequest req);
 
     @Query(value = """
-
+            
             SELECT
                 detail.id AS id,
                 i.name AS image,
@@ -106,7 +107,7 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, St
                 detail.status AS status,
                 co.code AS codeColor,
                 s.name AS nameSize
-                       
+            
             FROM product_detail detail
                      LEFT JOIN promotion_product_detail ppd on detail.id = ppd.id_product_detail
                      LEFT JOIN promotion pr on pr.id = ppd.id_promotion
@@ -121,7 +122,7 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, St
                      JOIN size s on s.id = detail.id_size
             where p.id = :id
             group by detail.id
-             """, nativeQuery = true)
+            """, nativeQuery = true)
     List<GetProductDetailByProduct> getByIdProduct(@Param("id") String id);
 
 
@@ -172,7 +173,7 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, St
                 pd.price as price,
                 promotion_summary.valuePromotion as valuePromotion,
                 pd.created_date as createdDate
-                      
+            
             FROM product_detail pd
                      LEFT JOIN (
                 SELECT
@@ -184,7 +185,7 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, St
                           WHERE  ppd.status = 'DANG_SU_DUNG' and po.status = 'DANG_KICH_HOAT'
                 GROUP BY pd.id
             ) promotion_summary ON pd.id = promotion_summary.pd_id
-                      
+            
                      JOIN product p ON pd.id_product = p.id
                      JOIN color c ON c.id = pd.id_color
                      JOIN size s ON s.id = pd.id_size
@@ -192,7 +193,7 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, St
                      JOIN category ca on ca.id = pd.id_category
             where ca.id = :id 
             group by pd.id
-                   """, nativeQuery = true)
+            """, nativeQuery = true)
     List<GetProductDetailByCategory> getProductDetailByCategory(@Param("id") String id);
 
     @Query(value = """
@@ -206,7 +207,7 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, St
                 pd.price as price,
                 promotion_summary.valuePromotion as valuePromotion,
                 pd.created_date as createdDate
-                        
+            
             FROM product_detail pd
                      LEFT JOIN (
                 SELECT
@@ -220,14 +221,14 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, St
                 WHERE  ppd.status = 'DANG_SU_DUNG'  and po.status = 'DANG_KICH_HOAT'
                 GROUP BY pd.id , ppd.status,po.status
             ) promotion_summary ON pd.id = promotion_summary.pd_id
-                        
+            
                      JOIN product p ON pd.id_product = p.id
                      JOIN color c ON c.id = pd.id_color
                      JOIN size s ON s.id = pd.id_size
                      LEFT JOIN image i ON i.id_product_detail = pd.id
             where promotion_summary.status ='DANG_SU_DUNG' and promotion_summary.statusPromotion = 'DANG_KICH_HOAT'
             group by pd.id
-                """, nativeQuery = true)
+            """, nativeQuery = true)
     Page<GetProductDetail> getProductDetailHavePromotion(Pageable pageable);
 
     @Query(value = """
@@ -241,7 +242,7 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, St
                 pd.price as price,
                 promotion_summary.valuePromotion as valuePromotion,
                 pd.created_date as createdDate
-                      
+            
             FROM product_detail pd
                      LEFT JOIN (
                 SELECT
@@ -253,15 +254,15 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, St
                 WHERE  ppd.status = 'DANG_SU_DUNG' and po.status = 'DANG_KICH_HOAT'
                 GROUP BY pd.id
             ) promotion_summary ON pd.id = promotion_summary.pd_id
-                      
+            
                      JOIN product p ON pd.id_product = p.id
                      JOIN color c ON c.id = pd.id_color
                      JOIN size s ON s.id = pd.id_size
                      LEFT JOIN image i ON i.id_product_detail = pd.id
             WHERE DATE_FORMAT(FROM_UNIXTIME(pd.created_date / 1000), '%Y-%m-%d %H:%i:%s') between DATE_SUB(NOW(), INTERVAL 15 DAY)  and  NOW()
             GROUP BY pd.id
-                      
-                  """, nativeQuery = true)
+            
+            """, nativeQuery = true)
     Page<GetProductDetail> getProductDetailNew(Pageable pageable);
 
     @Query(value = """
@@ -286,21 +287,21 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, St
                 WHERE  ppd.status = 'DANG_SU_DUNG' and po.status = 'DANG_KICH_HOAT'
                 GROUP BY pd.id
             ) promotion_summary ON pd.id = promotion_summary.pd_id
-                       
+            
                      JOIN product p ON pd.id_product = p.id
                      JOIN color c ON c.id = pd.id_color
                      JOIN size s ON s.id = pd.id_size
                      LEFT JOIN image i ON i.id_product_detail = pd.id
                      JOIN bill_detail bd on pd.id = bd.id_product_detail
-                       
+            
             GROUP BY pd.id
             having sum(bd.quantity) >5
             order by sum(bd.quantity)  desc
-                 """, nativeQuery = true)
+            """, nativeQuery = true)
     Page<GetProductDetail> getProductDetailSellMany(Pageable pageable);
 
     @Query(value = """
-
+            
               SELECT
                 pd.id as idProductDetail,
                 GROUP_CONCAT(i.name)as image,
@@ -329,7 +330,7 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, St
                 b.name as nameBrand,
                 m.name as nameMaterial,
                 s2.name as nameSole
-                             
+            
             from product_detail pd
                      left JOIN image i on i.id_product_detail = pd.id
                      JOIN product p on pd.id_product = p.id
@@ -340,7 +341,7 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, St
                      JOIN material m on pd.id_material = m.id
                      JOIN sole s2 on pd.id_sole = s2.id
               where pd.id = :id
-                   """, nativeQuery = true)
+            """, nativeQuery = true)
     GetDetailProductOfClient getDetailProductOfClient(@Param("id") String id);
 
 
@@ -414,7 +415,7 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, St
                 pd.price as price,
                 promotion_summary.valuePromotion as valuePromotion,
                 pd.created_date as createdDate
-                        
+            
             FROM product_detail pd
                      LEFT JOIN (
                 SELECT
@@ -449,28 +450,69 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, St
                 AND  ( :#{#res.newProduct} IS NULL  OR :#{#res.newProduct} = '' OR DATE_FORMAT(FROM_UNIXTIME(pd.created_date / 1000), '%Y-%m-%d %H:%i:%s') between DATE_SUB(NOW(), INTERVAL 15 DAY)  and  NOW())
                 AND ( :#{#res.sellOff} IS NULL  OR :#{#res.sellOff} = '' OR promotion_summary.status ='DANG_SU_DUNG')
                 GROUP BY pd.id,valuePromotion
-                """, nativeQuery = true)
+            """, nativeQuery = true)
     Page<GetProductDetail> getProductDetailByCategorys(Pageable pageable,
                                                        @Param("req") FindProductDetailByCategorysConvertRequest req,
                                                        @Param("res") FindProductDetailByCategorysRequest res);
 
     @Query(value = """
-    SELECT
-        p.id AS idProduct,
-        p.code AS codeProduct,
-        p.name AS nameProduct,
-        b.name AS brandName
-    FROM product p
-    LEFT JOIN brand b ON p.id_brand = b.id
-    WHERE
-        (:#{#req.keyword} IS NULL OR :#{#req.keyword} = '')
-        OR p.code LIKE CONCAT('%', :#{#req.keyword}, '%')
-        OR p.name LIKE CONCAT('%', :#{#req.keyword}, '%')
-""", nativeQuery = true)
+                SELECT
+                    p.id AS idProduct,
+                    pd.id as idProductDetail,
+                    p.code AS codeProduct,
+                    p.name AS nameProduct,
+                    b.name AS brandName,
+                    (
+                        SELECT MIN(pd2.price)
+                        FROM product_detail pd2
+                        WHERE pd2.id_product = p.id
+                    ) AS price,
+            
+                    -- Giá trị khuyến mãi cao nhất
+                    (
+                        SELECT MAX(pr.value)
+                        FROM product_detail pd3
+                        JOIN promotion_product_detail ppd
+                            ON ppd.id_product_detail = pd3.id
+                        JOIN promotion pr
+                            ON pr.id = ppd.id_promotion
+                        WHERE pd3.id_product = p.id
+                          AND ppd.status = 'DANG_SU_DUNG'
+                          AND pr.status = 'DANG_KICH_HOAT'
+                    ) AS valuePromotion,
+                    (
+                        SELECT i.name
+                        FROM product_detail pd4
+                        JOIN image i ON i.id_product_detail = pd4.id
+                        WHERE pd4.id_product = p.id
+                        ORDER BY i.id ASC
+                        LIMIT 1
+                    ) AS image
+            
+                FROM product p
+                JOIN product_detail pd ON pd.id_product = p.id
+                JOIN brand b ON b.id = pd.id_brand
+            
+                WHERE
+                    (
+                        :#{#req.keyword} IS NULL
+                        OR :#{#req.keyword} = ''
+                        OR p.code LIKE CONCAT('%', :#{#req.keyword}, '%')
+                        OR p.name LIKE CONCAT('%', :#{#req.keyword}, '%')
+                    )
+                    AND EXISTS (
+                        SELECT 1
+                        FROM product_detail pdx
+                        WHERE pdx.id_product = p.id
+                    )
+            
+                GROUP BY p.id, p.code, p.name, b.name
+            """, nativeQuery = true)
     Page<SearchProductBasic> searchBasicProduct(
             Pageable pageable,
             @Param("req") FindProductRequest req
     );
+
 
     @Query(value = """
                 SELECT

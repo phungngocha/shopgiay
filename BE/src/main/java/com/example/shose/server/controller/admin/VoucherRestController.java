@@ -32,9 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/*
- *  @author diemdz
- */
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/admin/voucher")

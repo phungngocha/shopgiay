@@ -17,9 +17,7 @@ import lombok.ToString;
 
 import java.util.Stack;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Entity
 @Getter
 @Setter

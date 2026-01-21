@@ -1,7 +1,16 @@
 .search-product-card {
   display: block;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
   text-decoration: none;
-  color: black;
+  color: #222;
+  transition: all 0.35s ease;
+}
+
+.search-product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
 .search-product-image {
@@ -55,4 +64,10 @@
   font-size: 18px;
   margin-top: 60px;
   color: #999;
+}
+.list-product {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+    margin: 30px 40px;
 }

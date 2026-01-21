@@ -4,7 +4,9 @@ import { Pagination } from "antd";
 import "./style-search-result.css";
 import { ProductDetailClientApi } from "../../../api/customer/productdetail/productDetailClient.api";
 import banner from "../../../assets/images/banner-2.png";
+import bandseach from "../../../assets/images/bandseach.png";
 import CardItem from "../component/Card";
+import CardSearchItem from "../component/CardSearch";
 function SearchResult() {
   const location = useLocation();
   const [products, setProducts] = useState([]);
@@ -73,7 +75,7 @@ function SearchResult() {
   return (
     <div className="search-result-page">
       <div className="box-products">
-        <img className="title-of-products" src={banner} alt="..." />
+        <img className="title-of-products" src={bandseach} alt="..." />
         {products.length === 0 ? (
           <div style={{ textAlign: "center", color: "#ff4400", fontSize: 30 }}>
             Không có sản phẩm nào!
@@ -81,10 +83,11 @@ function SearchResult() {
         ) : (
           <>
             <div className="list-product">
-              {products.map((item, index) => (
-                <CardItem item={item} index={index} />
-              ))}
-            </div>
+  {products.map((item, index) => (
+    <CardSearchItem key={item.id || index} item={item} />
+  ))}
+</div>
+
 
             <div className="box-pagination-products">
               <Pagination

@@ -4,9 +4,7 @@ import com.example.shose.server.infrastructure.constant.Status;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author Phuong Oanh
- */
+
 @Getter
 @Setter
 public abstract class BaseEmployeeRequest {

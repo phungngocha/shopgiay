@@ -6,9 +6,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Setter
 @Getter
 public class FindProductDetailRequest extends PageableRequest {

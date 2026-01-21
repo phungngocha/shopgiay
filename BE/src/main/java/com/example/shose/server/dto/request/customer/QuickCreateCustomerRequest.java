@@ -5,9 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author Hào Ngô
- */
+
 @Getter
 @Setter
 public class QuickCreateCustomerRequest {

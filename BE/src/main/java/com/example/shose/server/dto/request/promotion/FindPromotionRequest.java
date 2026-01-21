@@ -1,7 +1,5 @@
 package com.example.shose.server.dto.request.promotion;
-/*
- *  @author diemdz
- */
+
 
 import com.example.shose.server.infrastructure.common.PageableRequest;
 import lombok.Getter;

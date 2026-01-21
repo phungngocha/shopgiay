@@ -10,6 +10,7 @@ import com.example.shose.server.dto.request.productdetail.UpdateProductDetailReq
 import com.example.shose.server.dto.request.productdetail.UpdateQuantityAndPrice;
 import com.example.shose.server.dto.response.ProductDetailDTOResponse;
 import com.example.shose.server.dto.response.ProductDetailReponse;
+import com.example.shose.server.dto.response.SearchProductBasic;
 import com.example.shose.server.dto.response.cart.ListSizeOfItemCart;
 import com.example.shose.server.dto.response.productdetail.GetDetailProductOfClient;
 import com.example.shose.server.dto.response.productdetail.GetProductDetail;
@@ -61,7 +62,7 @@ public interface ProductDetailService {
 
     Page<GetProductDetail> getProductDetailByCategorys(FindProductDetailByCategorysRequest request,Pageable pageable);
 
-    Page<GetProductDetail> getProductDetailByName(FindProductRequest request, Pageable pageable);
+    Page<SearchProductBasic> getProductDetailByName(FindProductRequest request, Pageable pageable);
 
     ProductDetailReponse checkQuantityAndPriceByProducDetailByAll(CreateProductDetailRequest request);
 

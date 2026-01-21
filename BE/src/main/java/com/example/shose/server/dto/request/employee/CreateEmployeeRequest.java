@@ -6,9 +6,7 @@ import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
 
-/**
- * @author Phuong Oanh
- */
+
 public class CreateEmployeeRequest extends BaseEmployeeRequest {
 
 }

@@ -11,6 +11,7 @@ import com.example.shose.server.dto.request.productdetail.UpdateProductDetailReq
 import com.example.shose.server.dto.request.productdetail.UpdateQuantityAndPrice;
 import com.example.shose.server.dto.response.ProductDetailDTOResponse;
 import com.example.shose.server.dto.response.ProductDetailReponse;
+import com.example.shose.server.dto.response.SearchProductBasic;
 import com.example.shose.server.dto.response.cart.ListSizeOfItemCart;
 import com.example.shose.server.dto.response.productdetail.GetDetailProductOfClient;
 import com.example.shose.server.dto.response.productdetail.GetProductDetail;
@@ -379,9 +380,9 @@ public class ProductDetailServiceImpl implements ProductDetailService {
     }
 
     @Override
-    public Page<GetProductDetail> getProductDetailByName(FindProductRequest request, Pageable pageRequest) {
+    public Page<SearchProductBasic> getProductDetailByName(FindProductRequest request, Pageable pageRequest) {
         Pageable pageable = PageRequest.of(pageRequest.getPageNumber(), pageRequest.getPageSize());
-        return productDetailRepository.searchProduct(pageable,request);
+        return productDetailRepository.searchBasicProduct(pageable,request);
     }
 
     public ProductDetailReponse checkQuantityAndPriceByProducDetailByAll(CreateProductDetailRequest request) {

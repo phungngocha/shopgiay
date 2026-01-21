@@ -4,9 +4,7 @@ import com.example.shose.server.entity.Account;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author Phuong Oanh
- */
+
 @Setter
 @Getter
 public class UpdateEmployeeRequest extends BaseEmployeeRequest {
