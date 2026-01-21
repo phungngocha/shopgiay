@@ -75,14 +75,14 @@ function SearchResult() {
   return (
     <div className="search-result-page">
       <div className="box-products">
-        <img className="title-of-products" src={bandseach} alt="..." />
+        <img className="title-of-products1" src={bandseach} alt="..." />
         {products.length === 0 ? (
           <div style={{ textAlign: "center", color: "#ff4400", fontSize: 30 }}>
             Không có sản phẩm nào!
           </div>
         ) : (
           <>
-            <div className="list-product">
+            <div className="list-product1">
   {products.map((item, index) => (
     <CardSearchItem key={item.id || index} item={item} />
   ))}

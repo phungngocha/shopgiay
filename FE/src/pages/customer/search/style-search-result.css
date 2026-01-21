@@ -65,9 +65,22 @@
   margin-top: 60px;
   color: #999;
 }
-.list-product {
+.list-product1 {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 24px;
     margin: 30px 40px;
+}
+.title-of-products1 {
+  width: 100%;
+  height: 600px;
+  /* background-color: #f47d52; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 50px;
 }

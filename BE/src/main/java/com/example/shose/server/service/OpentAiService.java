@@ -1,5 +1,5 @@
 package com.example.shose.server.service;
 
-public interface GeminiService {
+public interface OpentAiService {
     String callAI(String prompt);
 }

@@ -1,6 +1,6 @@
 package com.example.shose.server.service.impl;
 
-import com.example.shose.server.service.GeminiService;
+import com.example.shose.server.service.OpentAiService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class GeminiServiceImpl implements GeminiService {
+public class OpentAiServiceImpl implements OpentAiService {
 
     @Value("${openai.api.key}")
     private String apiKey;
