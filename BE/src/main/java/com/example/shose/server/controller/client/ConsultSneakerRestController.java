@@ -2,8 +2,9 @@ package com.example.shose.server.controller.client;
 
 import com.example.shose.server.dto.SneakerAiDto;
 import com.example.shose.server.dto.request.ConsultRequest;
+import com.example.shose.server.dto.response.AiChatResponse;
 import com.example.shose.server.dto.response.SneakerConsultResponse;
-import com.example.shose.server.service.GeminiService;
+import com.example.shose.server.service.OpentAiService;
 import com.example.shose.server.service.ProductService;
 import com.example.shose.server.util.ResponseObject;
 import com.example.shose.server.util.SneakerPromptBuilder;
@@ -28,13 +29,12 @@ public class ConsultSneakerRestController {
     private SneakerPromptBuilder promptBuilder;
 
     @Autowired
-    private GeminiService geminiService;
+    private OpentAiService opentAiService;
     @Autowired
     private ObjectMapper objectMapper;
 
     @PostMapping("/consult-sneaker")
-    public ResponseObject consultSneaker(
-            @RequestBody ConsultRequest request) {
+    public ResponseObject consultSneaker(@RequestBody ConsultRequest request) {
 
         List<SneakerAiDto> sneakers = productService.getSneakers();
 
@@ -43,26 +43,26 @@ public class ConsultSneakerRestController {
                 sneakers
         );
 
-        String aiResult = geminiService.callAI(prompt);
+        String aiResult = opentAiService.callAI(prompt);
 
         try {
-            List<SneakerConsultResponse> result =
+            AiChatResponse response =
                     objectMapper.readValue(
                             aiResult,
-                            new TypeReference<List<SneakerConsultResponse>>() {}
+                            new TypeReference<AiChatResponse>() {}
                     );
 
-            return new ResponseObject(result);
+            return new ResponseObject(response);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("AI RAW RESULT:");
-            System.out.println(aiResult);
 
-            return new ResponseObject(Collections.emptyList());
+            AiChatResponse fallback = new AiChatResponse();
+            fallback.setMessage(aiResult);
+            fallback.setProducts(Collections.emptyList());
+
+            return new ResponseObject(fallback);
         }
     }
-
 
 
 }

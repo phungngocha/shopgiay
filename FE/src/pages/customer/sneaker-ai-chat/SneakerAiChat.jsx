@@ -14,28 +14,28 @@ export default function SneakerAiChat() {
   const sendMessage = async () => {
     if (!need.trim()) return;
 
+    // user message
     setMessages((prev) => [...prev, { from: "user", text: need }]);
     setNeed("");
     setLoading(true);
 
     try {
       const res = await SneakerAiClientApi.consultSneaker(need);
+      const data = res?.data?.data; // ResponseObject.data
 
-      const data = res?.data?.data;
-
-      // ✅ Nếu BE trả LIST sneaker
-      if (Array.isArray(data) && data.length > 0) {
-        setMessages((prev) => [...prev, { from: "ai", products: data }]);
-      }
-      // ✅ Nếu BE trả TEXT (OpenAI fallback)
-      else if (typeof data === "string") {
-        setMessages((prev) => [...prev, { from: "ai", text: data }]);
-      }
-      // ✅ Không có gì trả về
-      else {
+      if (data) {
         setMessages((prev) => [
           ...prev,
-          { from: "ai", text: "🤖 Mình chưa tìm được sản phẩm phù hợp." },
+          {
+            from: "ai",
+            text: data.message,
+            products: data.products || [],
+          },
+        ]);
+      } else {
+        setMessages((prev) => [
+          ...prev,
+          { from: "ai", text: "🤖 Mình chưa hiểu rõ nhu cầu của bạn." },
         ]);
       }
     } catch (e) {
@@ -48,73 +48,74 @@ export default function SneakerAiChat() {
     }
   };
 
- return (
-  <div className="ai-chat-wrapper">
-       {!open && (
-      <div className="ai-chat-button" onClick={() => setOpen(true)}>
-        <RobotOutlined />
-      </div>
-    )}
-     {/* HỘP CHAT */}
-    {open && (
-    <div className="ai-chat">
-      <div className="ai-chat-header">
-        <span>👟 Sneaker AI</span>
-          <CloseOutlined
-            className="close-btn"
-            onClick={() => setOpen(false)}
-          />
-      </div>
-
-      <div className="ai-chat-body">
-        {messages.map((m, i) =>
-          m.from === "user" ? (
-            <div key={i} className="msg user">
-              {m.text}
-            </div>
-          ) : (
-            <div key={i} className="msg ai">
-              {m.products ? (
-                m.products.map((p, idx) => (
-                  <div key={idx} className="product-card">
-                    <div className="product-name">{p.productName}</div>
-                    <div className="product-price">
-                      💰 {p.price?.toLocaleString()} đ
-                    </div>
-                    <div className="product-reason">{p.reason}</div>
-                    <button
-                      onClick={() =>
-                        navigate(`/detail-product/${p.productId}`)
-                      }
-                    >
-                      Xem chi tiết
-                    </button>
-                  </div>
-                ))
-              ) : (
-                m.text
-              )}
-            </div>
-          )
-        )}
-
-        {loading && (
-          <div className="msg ai typing">🤖 Đang tư vấn...</div>
-        )}
-      </div>
-
-      <div className="ai-chat-input">
-        <input
-          value={need}
-          onChange={(e) => setNeed(e.target.value)}
-          placeholder="VD: Giày đi học, êm, dưới 2 triệu"
-          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-        />
-        <button onClick={sendMessage}>Gửi</button>
-      </div>
-    </div>
+  return (
+    <div className="ai-chat-wrapper">
+      {!open && (
+        <div className="ai-chat-button" onClick={() => setOpen(true)}>
+          <RobotOutlined />
+        </div>
       )}
-  </div>
-);
 
+      {open && (
+        <div className="ai-chat">
+          <div className="ai-chat-header">
+            <span>👟 Sneaker AI</span>
+            <CloseOutlined
+              className="close-btn"
+              onClick={() => setOpen(false)}
+            />
+          </div>
+
+          <div className="ai-chat-body">
+            {messages.map((m, i) =>
+              m.from === "user" ? (
+                <div key={i} className="msg user">
+                  {m.text}
+                </div>
+              ) : (
+                <div key={i} className="msg ai">
+                  {/* message */}
+                  {m.text && <div className="ai-text">{m.text}</div>}
+
+                  {/* product cards */}
+                  {Array.isArray(m.products) &&
+                    m.products.length > 0 &&
+                    m.products.map((p, idx) => (
+                      <div key={idx} className="product-card">
+                        <div className="product-name">{p.name || p.productName}</div>
+                        <div className="product-price">
+                          💰 {p.price?.toLocaleString()} đ
+                        </div>
+                        <div className="product-reason">{p.reason}</div>
+                        <button
+                          onClick={() =>
+                            navigate(`/detail-product/${p.productId}`)
+                          }
+                        >
+                          Xem chi tiết
+                        </button>
+                      </div>
+                    ))}
+                </div>
+              )
+            )}
+
+            {loading && (
+              <div className="msg ai typing">🤖 Đang tư vấn...</div>
+            )}
+          </div>
+
+          <div className="ai-chat-input">
+            <input
+              value={need}
+              onChange={(e) => setNeed(e.target.value)}
+              placeholder="VD: Giày đi học, êm, dưới 2 triệu"
+              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+            />
+            <button onClick={sendMessage}>Gửi</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
