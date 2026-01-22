@@ -3,6 +3,7 @@ import { SneakerAiClientApi } from "../../../api/customer/product/SneakerAiClien
 import { useNavigate } from "react-router-dom";
 import "./sneaker-ai-chat.css";
 import { RobotOutlined, CloseOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 export default function SneakerAiChat() {
   const [open, setOpen] = useState(false);
@@ -82,27 +83,24 @@ export default function SneakerAiChat() {
                     m.products.length > 0 &&
                     m.products.map((p, idx) => (
                       <div key={idx} className="product-card">
-                        <div className="product-name">{p.name || p.productName}</div>
+                        <div className="product-name">{p.nameProduct}</div>
                         <div className="product-price">
                           💰 {p.price?.toLocaleString()} đ
                         </div>
                         <div className="product-reason">{p.reason}</div>
-                        <button
-                          onClick={() =>
-                            navigate(`/detail-product/${p.productId}`)
-                          }
+                        <Link
+                          to={`/detail-product/${p.idProductDetail}`}
+                          className="ai-product-detail-link"
                         >
                           Xem chi tiết
-                        </button>
+                        </Link>
                       </div>
                     ))}
                 </div>
-              )
+              ),
             )}
 
-            {loading && (
-              <div className="msg ai typing">🤖 Đang tư vấn...</div>
-            )}
+            {loading && <div className="msg ai typing">🤖 Đang tư vấn...</div>}
           </div>
 
           <div className="ai-chat-input">
