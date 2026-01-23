@@ -7,9 +7,7 @@ import org.springframework.stereotype.Repository;
 
 
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, String> {
 }

@@ -9,9 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Repository
 public interface CartRepository extends JpaRepository<Cart,String> {
     Cart getCartByAccount_Id(String idAccount);

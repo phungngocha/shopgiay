@@ -12,9 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Repository
 public interface BillHistoryRepository extends JpaRepository<BillHistory, String> {
 

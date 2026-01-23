@@ -17,9 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Repository
 public interface UserReposiory extends JpaRepository<User, String> {
     @Query(value = """

@@ -12,9 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Repository
 public interface ColorRepository extends JpaRepository<Color, String> {
     @Query(value = """

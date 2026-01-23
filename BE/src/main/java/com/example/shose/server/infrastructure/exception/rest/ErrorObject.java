@@ -1,8 +1,6 @@
 package com.example.shose.server.infrastructure.exception.rest;
 
-/**
- * @author Nguyễn Vinh
- */
+
 public class ErrorObject {
 
     private String errorMessage;

@@ -32,9 +32,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author thangdt
- */
+
 @Service
 @Transactional
 public class BillDetailServiceImpl implements BillDetailService {

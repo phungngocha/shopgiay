@@ -17,9 +17,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
-/**
- * @author Hào Ngô
- */
+
 @Service
 public class StatisticalServiceImpl implements StatisticalService {
     private long currentTimeMillis = System.currentTimeMillis();

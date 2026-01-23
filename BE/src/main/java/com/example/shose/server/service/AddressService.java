@@ -11,9 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-/**
- * @author Hào Ngô
- */
+
 public interface AddressService {
 
     List<AddressUserReponse> findAddressByUserId(String idUser);

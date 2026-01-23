@@ -30,9 +30,7 @@ import com.example.shose.server.dto.response.bill.UserBillResponse;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * @author thangdt
- */
+
 public interface BillService {
 
     List<BillResponse> getAll(String id, BillRequest request);

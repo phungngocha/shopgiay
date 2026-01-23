@@ -5,9 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Slf4j
 public class FormUtils {
 

@@ -14,9 +14,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * @author thangdt
- */
+
 public interface PaymentsMethodService {
 
     List<PaymentsMethod> findByAllIdBill(String idBill);

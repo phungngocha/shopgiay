@@ -32,9 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author Phuong Oanh
- */
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
 

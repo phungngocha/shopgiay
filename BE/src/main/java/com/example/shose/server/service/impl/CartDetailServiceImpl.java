@@ -1,7 +1,5 @@
 package com.example.shose.server.service.impl;
-/*
- *  @author diemdz
- */
+
 
 import com.example.shose.server.dto.response.cartdetail.ChangeQuantity;
 import com.example.shose.server.dto.response.cartdetail.ChangeSizeInCart;

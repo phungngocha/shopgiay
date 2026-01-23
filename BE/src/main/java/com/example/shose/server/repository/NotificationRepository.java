@@ -9,9 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Repository
 public interface NotificationRepository extends JpaRepository<Notification,String> {
     List<Notification> findAllByReceiver(@Param("receiver") String receiver, Sort sort);

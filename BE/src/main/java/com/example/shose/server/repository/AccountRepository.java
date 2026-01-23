@@ -13,9 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Repository
 public interface AccountRepository extends JpaRepository<Account, String> {
 

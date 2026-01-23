@@ -9,9 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/*
- *  @author diemdz
- */
+
 @Repository
 public interface PromotionProductDetailRepository extends JpaRepository<PromotionProductDetail,String> {
     @Query(value = "select ppd from PromotionProductDetail ppd where ppd.productDetail.id =:idProductDetail and ppd.promotion.id =:idPromotion")

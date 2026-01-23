@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { SneakerAiClientApi } from "../../../api/customer/product/SneakerAiClient.api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./sneaker-ai-chat.css";
 import { RobotOutlined, CloseOutlined } from "@ant-design/icons";
 
@@ -59,7 +59,7 @@ export default function SneakerAiChat() {
       {open && (
         <div className="ai-chat">
           <div className="ai-chat-header">
-            <span>👟 Sneaker AI</span>
+            <span>AI tư vấn</span>
             <CloseOutlined
               className="close-btn"
               onClick={() => setOpen(false)}
@@ -87,13 +87,12 @@ export default function SneakerAiChat() {
                           💰 {p.price?.toLocaleString()} đ
                         </div>
                         <div className="product-reason">{p.reason}</div>
-                        <button
-                          onClick={() =>
-                            navigate(`/detail-product/${p.productId}`)
-                          }
+                        <Link
+                          to={`/detail-product/${p.idProductDetail}`}
+                          className="ai-product-detail-link"
                         >
                           Xem chi tiết
-                        </button>
+                        </Link>
                       </div>
                     ))}
                 </div>

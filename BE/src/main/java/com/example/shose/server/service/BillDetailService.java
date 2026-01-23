@@ -8,9 +8,6 @@ import com.example.shose.server.entity.BillDetail;
 
 import java.util.List;
 
-/**
- * @author thangdt
- */
 public interface BillDetailService {
 
     List<BillDetailResponse> findAllByIdBill(BillDetailRequest request);

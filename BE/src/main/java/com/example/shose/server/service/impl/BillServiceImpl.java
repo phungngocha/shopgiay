@@ -93,9 +93,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
-/**
- * @author thangdt
- */
+
 
 @Service
 @Transactional

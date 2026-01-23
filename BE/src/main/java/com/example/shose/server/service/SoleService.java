@@ -11,9 +11,7 @@ import jakarta.validation.Valid;
 
 import java.util.List;
 
-/**
- * @author Nguyễn Vinh
- */
+
 public interface SoleService {
 
     List<SoleResponse> findAll (final FindSoleRequest req);

@@ -2,9 +2,7 @@ package com.example.shose.server.infrastructure.exception.rest;
 
 import com.example.shose.server.infrastructure.constant.Message;
 
-/**
- * @author Nguyễn Vinh
- */
+
 public class MessageHandlingException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
