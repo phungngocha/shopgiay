@@ -1,7 +1,4 @@
 package com.example.shose.server.service;
-/*
- *  @author diemdz
- */
 
 import com.example.shose.server.dto.request.promotion.CreatePromotionRequest;
 import com.example.shose.server.dto.request.promotion.FindPromotionRequest;

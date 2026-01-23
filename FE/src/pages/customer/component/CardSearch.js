@@ -8,7 +8,7 @@ import { CartClientApi } from "./../../../api/customer/cart/cartClient.api";
 import { ProductDetailClientApi } from "./../../../api/customer/productdetail/productDetailClient.api";
 import "./style-card.css";
 
-function CardItem({ item, index }) {
+function CardSearchItem({ item, index }) {
   const now = dayjs();
   const [modal, setModal] = useState(false);
   const [id, setId] = useState("");
@@ -250,32 +250,15 @@ function CardItem({ item, index }) {
                 }}
                 className="image-product"
               >
-                {item.valuePromotion !== null ? (
-                  <div className="value-promotion">
-                    Giảm {parseInt(item.valuePromotion)}%
-                  </div>
-                ) : null}
-                {nowTimestampReduce <= itemTimestamp && (
-                  <div className="new-product">Mới</div>
-                )}
               </div>
             </div>
             <div>
               {item.nameProduct && (
                 <p className="name-product">
-                  {item.nameProduct} - [{item.nameSize}]
+                  {item.nameProduct}
                 </p>
               )}
 
-            </div>
-            <div className="list-color-detail-card">
-              <div
-                className="color-product"
-                key={index}
-                style={{
-                  backgroundColor: item.codeColor,
-                }}
-              ></div>
             </div>
             <p className="price-product">
               {item.valuePromotion !== null ? (
@@ -428,4 +411,4 @@ function CardItem({ item, index }) {
   );
 }
 
-export default CardItem;
+export default CardSearchItem;

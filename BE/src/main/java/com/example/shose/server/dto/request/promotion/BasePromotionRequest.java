@@ -1,7 +1,5 @@
 package com.example.shose.server.dto.request.promotion;
-/*
- *  @author diemdz
- */
+
 
 import com.example.shose.server.infrastructure.constant.Status;
 import jakarta.validation.constraints.NotBlank;

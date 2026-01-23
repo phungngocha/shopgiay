@@ -2,6 +2,7 @@ package com.example.shose.server.service.impl;
 
 import com.example.shose.server.dto.ProductDetailDTO;
 import com.example.shose.server.dto.request.image.ImageColorFilerequestDTO;
+import com.example.shose.server.dto.request.product.FindProductRequest;
 import com.example.shose.server.dto.request.productdetail.CreateProductDetailRequest;
 import com.example.shose.server.dto.request.productdetail.FindProductDetailByCategorysConvertRequest;
 import com.example.shose.server.dto.request.productdetail.FindProductDetailByCategorysRequest;
@@ -10,6 +11,7 @@ import com.example.shose.server.dto.request.productdetail.UpdateProductDetailReq
 import com.example.shose.server.dto.request.productdetail.UpdateQuantityAndPrice;
 import com.example.shose.server.dto.response.ProductDetailDTOResponse;
 import com.example.shose.server.dto.response.ProductDetailReponse;
+import com.example.shose.server.dto.response.SearchProductBasic;
 import com.example.shose.server.dto.response.cart.ListSizeOfItemCart;
 import com.example.shose.server.dto.response.productdetail.GetDetailProductOfClient;
 import com.example.shose.server.dto.response.productdetail.GetProductDetail;
@@ -68,9 +70,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-/**
- * @author Nguyễn Vinh
- */
 @Service
 @Validated
 @Slf4j
@@ -378,6 +377,12 @@ public class ProductDetailServiceImpl implements ProductDetailService {
                 .build();
         System.out.println(detail);
         return productDetailRepository.getProductDetailByCategorys(pageable,detail,request);
+    }
+
+    @Override
+    public Page<SearchProductBasic> getProductDetailByName(FindProductRequest request, Pageable pageRequest) {
+        Pageable pageable = PageRequest.of(pageRequest.getPageNumber(), pageRequest.getPageSize());
+        return productDetailRepository.searchBasicProduct(pageable,request);
     }
 
     public ProductDetailReponse checkQuantityAndPriceByProducDetailByAll(CreateProductDetailRequest request) {

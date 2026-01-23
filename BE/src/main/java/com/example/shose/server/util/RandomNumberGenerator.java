@@ -4,9 +4,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.Random;
 
-/**
- * @author Nguyễn Vinh
- */
+
 public class RandomNumberGenerator {
 
     public String randomToString(String name, int soLuong) {

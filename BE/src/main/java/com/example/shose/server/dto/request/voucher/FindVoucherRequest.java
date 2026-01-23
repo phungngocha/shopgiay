@@ -1,7 +1,5 @@
 package com.example.shose.server.dto.request.voucher;
-/*
- *  @author diemdz
- */
+
 
 import com.example.shose.server.infrastructure.common.PageableRequest;
 import com.example.shose.server.infrastructure.constant.Status;

@@ -13,9 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Repository
 public interface BrandRepository extends JpaRepository<Brand, String> {
 

@@ -1,7 +1,5 @@
 package com.example.shose.server.dto.request.productdetail;
-/*
- *  @author diemdz
- */
+
 
 import com.example.shose.server.infrastructure.common.PageableRequest;
 import lombok.AllArgsConstructor;

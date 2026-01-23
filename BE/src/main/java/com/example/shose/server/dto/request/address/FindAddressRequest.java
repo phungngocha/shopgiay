@@ -5,9 +5,7 @@ import com.example.shose.server.infrastructure.constant.Status;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author Hào Ngô
- */
+
 @Getter
 @Setter
 public class FindAddressRequest extends PageableRequest {

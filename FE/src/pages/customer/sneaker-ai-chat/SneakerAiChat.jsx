@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { SneakerAiClientApi } from "../../../api/customer/product/SneakerAiClient.api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./sneaker-ai-chat.css";
 import { RobotOutlined, CloseOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
@@ -60,7 +60,7 @@ export default function SneakerAiChat() {
       {open && (
         <div className="ai-chat">
           <div className="ai-chat-header">
-            <span>👟 Sneaker AI</span>
+            <span>AI tư vấn</span>
             <CloseOutlined
               className="close-btn"
               onClick={() => setOpen(false)}

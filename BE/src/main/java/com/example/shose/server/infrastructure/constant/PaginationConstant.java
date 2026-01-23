@@ -1,8 +1,6 @@
 package com.example.shose.server.infrastructure.constant;
 
-/**
- * @author Nguyễn Vinh
- */
+
 public final class PaginationConstant {
     private PaginationConstant() {}
 

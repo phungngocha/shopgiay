@@ -20,9 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Service
 @Validated
 public class SoleServiceImpl implements SoleService {

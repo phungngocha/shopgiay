@@ -10,9 +10,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Getter
 @Setter
 @MappedSuperclass

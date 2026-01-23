@@ -25,9 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-/**
- * @author Hào Ngô
- */
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/admin/statistical")

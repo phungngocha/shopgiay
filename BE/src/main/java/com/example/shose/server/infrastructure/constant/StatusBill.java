@@ -1,8 +1,6 @@
 package com.example.shose.server.infrastructure.constant;
 
-/**
- * @author Nguyễn Vinh
- */
+
 public enum StatusBill {
     TAO_HOA_DON,
     CHO_XAC_NHAN,

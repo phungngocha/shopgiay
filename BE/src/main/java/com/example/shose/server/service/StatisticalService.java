@@ -10,9 +10,7 @@ import com.example.shose.server.dto.response.statistical.StatisticalStatusBillRe
 
 import java.util.List;
 
-/**
- * @author Hào Ngô
- */
+
 public interface StatisticalService {
     List<StatisticalDayResponse> getAllStatisticalDay();
     List<StatisticalMonthlyResponse> getAllStatisticalMonth();

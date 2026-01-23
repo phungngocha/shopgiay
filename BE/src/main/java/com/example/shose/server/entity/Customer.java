@@ -14,9 +14,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Entity
 @Getter
 @Setter

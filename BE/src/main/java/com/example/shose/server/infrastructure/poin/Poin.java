@@ -5,9 +5,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
-/**
- * @author thangdt
- */
+
 @Getter
 @Setter
 @ToString

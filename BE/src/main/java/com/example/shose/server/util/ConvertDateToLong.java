@@ -16,9 +16,7 @@ import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.TimeZone;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Component
 public class ConvertDateToLong {
 

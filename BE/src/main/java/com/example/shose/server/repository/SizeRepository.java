@@ -15,9 +15,7 @@ import javax.crypto.spec.OAEPParameterSpec;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Repository
 public interface SizeRepository extends JpaRepository<Size, String> {
 

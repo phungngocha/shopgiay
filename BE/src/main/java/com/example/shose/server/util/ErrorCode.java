@@ -1,7 +1,5 @@
 package com.example.shose.server.util;
-/*
- *  @author diemdz
- */
+
 
 public interface ErrorCode {
     String INTERNAL_SERVER_ERROR = "BS-500";

@@ -34,9 +34,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author thangdt
- */
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/admin/bill")

@@ -10,9 +10,7 @@ import jakarta.validation.Valid;
 
 import java.util.List;
 
-/**
- * @author Nguyễn Vinh
- */
+
 public interface ColorService {
 
     List<ColorResponse> findAll(final FindColorRequest req);

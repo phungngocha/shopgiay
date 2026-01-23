@@ -16,9 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Repository
 public interface VoucherRepository extends JpaRepository<Voucher, String> {
     @Query(value = """ 

@@ -11,9 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Repository
 public interface PaymentsMethodRepository extends JpaRepository<PaymentsMethod, String> {
 

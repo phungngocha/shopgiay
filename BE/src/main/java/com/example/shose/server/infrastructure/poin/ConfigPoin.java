@@ -12,9 +12,7 @@ import org.springframework.util.FileCopyUtils;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 
-/**
- * @author thangdt
- */
+
 @Component
 public class ConfigPoin {
 

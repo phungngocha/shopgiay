@@ -11,9 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * @author thangdt
- */
+
 @Repository
 public interface HistoryPoinRepository extends JpaRepository<HistoryPoin, String> {
 

@@ -7,9 +7,7 @@ import com.example.shose.server.service.VoucherDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * @author thangdt
- */
+
 @Service
 public class VoucherDetailServiceImpl implements VoucherDetailService {
     @Autowired

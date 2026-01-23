@@ -18,9 +18,7 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Service
 @Validated
 public class SizeServiceImpl implements SizeService {

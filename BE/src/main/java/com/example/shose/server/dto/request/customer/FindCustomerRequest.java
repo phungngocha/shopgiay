@@ -4,9 +4,7 @@ import com.example.shose.server.infrastructure.common.PageableRequest;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author Phuong Oanh
- */
+
 @Setter
 @Getter
 public class FindCustomerRequest extends PageableRequest {

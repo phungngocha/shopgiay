@@ -5,9 +5,7 @@ import jakarta.persistence.PrePersist;
 
 import java.util.UUID;
 
-/**
- * @author Nguyễn Vinh
- */
+
 public class CreatePrimaryEntityListener {
 
     @PrePersist

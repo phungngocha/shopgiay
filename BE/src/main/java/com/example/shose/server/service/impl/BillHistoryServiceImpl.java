@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @author thangdt
- */
+
 @Service
 public class BillHistoryServiceImpl implements BillHistoryService {
 

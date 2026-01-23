@@ -1,7 +1,5 @@
 package com.example.shose.server.dto.request.bill.billaccount;
-/*
- *  @author diemdz
- */
+
 
 import com.example.shose.server.dto.request.bill.billcustomer.BillDetailOnline;
 import com.example.shose.server.dto.response.payment.PayMentVnpayResponse;

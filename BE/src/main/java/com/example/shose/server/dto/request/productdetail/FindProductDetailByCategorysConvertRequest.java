@@ -1,7 +1,5 @@
 package com.example.shose.server.dto.request.productdetail;
-/*
- *  @author diemdz
- */
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

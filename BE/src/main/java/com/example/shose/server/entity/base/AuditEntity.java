@@ -7,9 +7,7 @@ import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author Nguyễn Vinh
- */
+
 @Getter
 @Setter
 @MappedSuperclass

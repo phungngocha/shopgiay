@@ -13,9 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-/**
- * @author Phuong Oanh
- */
+
 public interface EmployeeService {
 
     List<EmployeeResponse> findAll( FindEmployeeRequest req);

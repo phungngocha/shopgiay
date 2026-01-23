@@ -21,9 +21,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 
-/**
- * @author thangdt
- */
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/admin/payment")

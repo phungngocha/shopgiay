@@ -12,9 +12,7 @@ import org.springframework.data.repository.query.Param;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * @author thangdt
- */
+
 
 public interface BillDetailRepository extends JpaRepository<BillDetail, String> {
 

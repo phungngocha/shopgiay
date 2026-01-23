@@ -5,9 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author thangdt
- */
+
 @Getter
 @Setter
 public class RefundProductRequest {

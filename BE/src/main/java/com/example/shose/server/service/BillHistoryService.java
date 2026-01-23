@@ -5,9 +5,7 @@ import com.example.shose.server.entity.BillHistory;
 
 import java.util.List;
 
-/**
- * @author thangdt
- */
+
 
 public interface BillHistoryService {
 
