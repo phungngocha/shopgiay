@@ -35,16 +35,8 @@ function CardSearchItem({ item, index }) {
 
   useEffect(() => {
     localStorage.setItem("cartLocal", JSON.stringify(cartLocal));
-    console.log(cartLocal);
   }, [cartLocal]);
   useEffect(() => {
-    console.log(item);
-    console.log(now.format("HH:mm:ss DD-MM-YYYY"));
-    console.log(
-      now.subtract(15, "day").format("DD-MM-YYYY"),
-      dayjs.unix(item.createdDate / 1000).format("DD-MM-YYYY"),
-      now.format("DD-MM-YYYY")
-    );
     if (idAccountLocal !== null) {
       CartClientApi.listCart(idAccountLocal).then((res) => {
         setCartAccount(res.data.data)
@@ -54,16 +46,12 @@ function CardSearchItem({ item, index }) {
 
   const handleAddCartLocal = (newCartItem) => {
     setCartLocal((prev) => {
-      console.log(cartLocal);
       const exists = prev.find(
         (item) => item.idProductDetail === newCartItem.idProductDetail
       );
-      console.log(exists);
       if (exists === undefined) {
-        console.log(exists);
         return [...prev, newCartItem];
       } else {
-        console.log(exists);
         return prev.map((item) =>
           item.idProductDetail === newCartItem.idProductDetail
             ? { ...item, quantity: item.quantity + newCartItem.quantity }

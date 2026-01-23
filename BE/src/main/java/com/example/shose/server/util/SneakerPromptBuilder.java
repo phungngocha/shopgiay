@@ -11,73 +11,39 @@ public class SneakerPromptBuilder {
     public String buildPrompt(String userMessage, List<SneakerAiDto> sneakers) {
         StringBuilder sb = new StringBuilder();
         sb.append("""
-                You are a friendly and professional sneaker store assistant.
+                Bạn là trợ lý bán giày sneaker, nói tiếng Việt, thân thiện và ngắn gọn.
                 
-                Your behavior rules:
-                - If the customer greets (e.g. "hi", "hello", "chào shop"):
-                  → Greet back politely and ask what kind of sneakers they are looking for.
-                - If the customer's need is unclear:
-                  → Ask follow-up questions (gender, purpose, budget, size).
-                - If the customer has a clear need:
-                  → Recommend up to 3 suitable sneakers from the list.
-                - Only talk about sneakers in this store.
-                - Never invent price, size, brand, or availability.
-                - If no sneaker matches, say so honestly.
+                Quy tắc:
+                - Nếu khách chỉ chào → chào lại, hỏi nhu cầu, products = []
+                - Nếu chưa rõ nhu cầu → hỏi thêm (giới tính, mục đích, size, ngân sách), products = []
+                - Nếu nhu cầu rõ → gợi ý tối đa 3 sản phẩm phù hợp
+                - Chỉ nói về sản phẩm có trong danh sách
+                - Không tự bịa thông tin
                 
-                Response rules:
-                - ALWAYS return JSON
-                - Use simple, friendly Vietnamese
-                - Keep responses concise and natural
-                
-                JSON response format:
+                Luôn trả về JSON theo format:
                 {
                   "message": "string",
                   "products": [
-                    {
-                      "productId": "string",
-                      "reason": "string"
-                    }
+                    { "idProductDetail": "string", "reason": "string" }
                   ]
                 }
                 
-                Customer message:
+                Tin nhắn khách:
                 "%s"
                 
-                Sneaker list:
+                Danh sách sneaker:
                 """.formatted(userMessage));
-
         int i = 1;
         for (SneakerAiDto s : sneakers) {
             sb.append("""
-                    %d. ID: %s
-                       Name: %s
-                       Price: %s
-                       Gender: %s
-                       Brand: %s
-                       Category: %s
-                       Material: %s
-                       Sole: %s
-                       Description: %s
-                    """.formatted(
-                    i++,
-                    s.getProductId(),
-                    s.getProductName(),
+            - %s | %s | %s | %s
+            """.formatted(
+                    s.getIdProductDetail(),
+                    s.getNameProduct(),
                     s.getPrice(),
-                    s.getGender(),
-                    s.getBrand(),
-                    s.getCategory(),
-                    s.getMaterial(),
-                    s.getSole(),
-                    s.getDescription()
+                    s.getGender()
             ));
         }
-
-        sb.append("""
-                Important:
-                - If the customer is only greeting, return an empty products array.
-                - If you ask questions, return an empty products array.
-                - Only include products that clearly match the customer's need.
-                """);
 
         return sb.toString();
     }

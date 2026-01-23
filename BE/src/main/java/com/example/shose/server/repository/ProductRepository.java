@@ -43,13 +43,14 @@ public interface ProductRepository extends JpaRepository<Product, String> {
     List<ProductResponse> getAll(@Param("req") FindProductRequest req);
 
     @Query("SELECT p FROM Product p WHERE p.code =:code")
-    Product getOneByCode (@Param("code") String code);
+    Product getOneByCode(@Param("code") String code);
 
     @Query("SELECT p FROM Product p WHERE p.name =:name")
-    Product getOneByName (@Param("name") String name);
+    Product getOneByName(@Param("name") String name);
 
     @Query("SELECT s FROM Product s WHERE s.code =:code AND s.id <> :id")
     Product getByNameExistence(@Param("code") String code, @Param("id") String id);
+
     @Query(value = """
             SELECT
                 p.id AS id,
@@ -67,9 +68,9 @@ public interface ProductRepository extends JpaRepository<Product, String> {
     List<ProductUseRespone> getProductUse(@Param("req") FindProductUseRequest req);
 
     @Query(value = """ 
-        SELECT p.name FROM product p WHERE ( :name IS NULL   OR :name LIKE '' OR p.name LIKE %:name% )
- """,nativeQuery = true)
-    List<String> findAllByName(@Param("name")String name);
+                   SELECT p.name FROM product p WHERE ( :name IS NULL   OR :name LIKE '' OR p.name LIKE %:name% )
+            """, nativeQuery = true)
+    List<String> findAllByName(@Param("name") String name);
 
 
     @Query(value = """
@@ -127,28 +128,40 @@ public interface ProductRepository extends JpaRepository<Product, String> {
                 AND  ( :#{#req.maxPrice} IS NULL OR detail.price <= :#{#req.maxPrice} )
                 GROUP BY detail.id, i.name, p.name, s2.name, c2.name, detail.price, detail.created_date, detail.gender, detail.status, si.name, c.name, b.name, detail.quantity, s2.name, c2.code
                 ORDER BY detail.last_modified_date DESC 
-                 
+            
             """, nativeQuery = true)
     List<ProductDetailReponse> getAllProduct(@Param("req") FindProductDetailRequest req);
 
 
     @Query(value = """
                 SELECT
-                  p.id AS productId,
-                  p.name AS productName,
-                  pd.price AS price,
-                  pd.gender AS gender,
-                  pd.description AS description,
-                  pd.id_brand AS brand,
-                  pd.id_category AS category,
-                  pd.id_material AS material,
-                  pd.id_sole AS sole
-                FROM product p
-                JOIN product_detail pd ON p.id = pd.id_product
-                WHERE p.status = 'DANG_SU_DUNG'
-                AND pd.status = 'DANG_SU_DUNG'
-                AND pd.quantity > 0
-                LIMIT 20
+                            detail.id AS idProductDetail,
+                            CONCAT(
+                                p.name, ' [',
+                                s2.name, ' - ',
+                                c2.name, ']'
+                            ) AS nameProduct,
+                            detail.price AS price,
+                            detail.gender AS gender
+                        FROM product_detail detail
+                        JOIN product p ON detail.id_product = p.id
+                        JOIN size s2 ON detail.id_size = s2.id
+                        JOIN color c2 ON detail.id_color = c2.id
+                        WHERE detail.status = 'DANG_SU_DUNG'
             """, nativeQuery = true)
     List<Object[]> findSneakersForAi();
+
+    @Query(value = """
+            SELECT
+                d.id AS idProductDetail,
+                CONCAT(p.name, ' [', s.name, ' - ', c.name, ']') AS nameProduct,
+                d.price,
+                d.gender
+            FROM product_detail d
+            JOIN product p ON d.id_product = p.id
+            JOIN size s ON d.id_size = s.id
+            JOIN color c ON d.id_color = c.id
+            WHERE d.id IN :ids
+            """, nativeQuery = true)
+    List<Object[]> findByProductDetailIds(@Param("ids") List<String> ids);
 }

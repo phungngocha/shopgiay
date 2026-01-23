@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SneakerConsultResponse {
-    private String productId;
+    private String idProductDetail;
     private String reason;
 }

@@ -82,7 +82,12 @@ export default function SneakerAiChat() {
                     m.products.length > 0 &&
                     m.products.map((p, idx) => (
                       <div key={idx} className="product-card">
-                        <div className="product-name">{p.name || p.productName}</div>
+                        {/* <img
+                          className="img-detail-product"
+                          src={p.image}
+                          alt="..."
+                        /> */}
+                        <div className="product-name">{p.nameProduct}</div>
                         <div className="product-price">
                           💰 {p.price?.toLocaleString()} đ
                         </div>
@@ -96,12 +101,10 @@ export default function SneakerAiChat() {
                       </div>
                     ))}
                 </div>
-              )
+              ),
             )}
 
-            {loading && (
-              <div className="msg ai typing">🤖 Đang tư vấn...</div>
-            )}
+            {loading && <div className="msg ai typing">🤖 Đang tư vấn...</div>}
           </div>
 
           <div className="ai-chat-input">

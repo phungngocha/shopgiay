@@ -34,4 +34,6 @@ public interface ProductService {
     List<ProductDetailReponse> getAllProduct(FindProductDetailRequest req);
 
     List<SneakerAiDto> getSneakers();
+
+    List<SneakerAiDto> getDetailsByIds(List<String> ids);
 }

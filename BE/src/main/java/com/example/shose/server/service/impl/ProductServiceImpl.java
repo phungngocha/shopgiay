@@ -108,15 +108,24 @@ public class ProductServiceImpl implements ProductService {
 
         return rows.stream().map(r -> {
             SneakerAiDto dto = new SneakerAiDto();
-            dto.setProductId((String) r[0]);
-            dto.setProductName((String) r[1]);
+            dto.setIdProductDetail((String) r[0]);
+            dto.setNameProduct((String) r[1]);
+            dto.setPrice((BigDecimal) r[2]);
+            dto.setGender(r[3] != null ? r[3].toString() : null);
+            return dto;
+        }).toList();
+    }
+
+    @Override
+    public List<SneakerAiDto> getDetailsByIds(List<String> ids) {
+        List<Object[]> rows = productRepository.findByProductDetailIds(ids);
+
+        return rows.stream().map(r -> {
+            SneakerAiDto dto = new SneakerAiDto();
+            dto.setIdProductDetail((String) r[0]);
+            dto.setNameProduct((String) r[1]);
             dto.setPrice((BigDecimal) r[2]);
             dto.setGender(String.valueOf(r[3]));
-            dto.setDescription((String) r[4]);
-            dto.setBrand((String) r[5]);
-            dto.setCategory((String) r[6]);
-            dto.setMaterial((String) r[7]);
-            dto.setSole((String) r[8]);
             return dto;
         }).toList();
     }
